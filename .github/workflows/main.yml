@@ -2,7 +2,7 @@ name: Label Repositories
 
 on:
   push:
-    branches: [ main ]
+    branches:  main 
 
 jobs:
   label-repositories:
@@ -15,5 +15,5 @@ jobs:
       - name: Read Repository Names from File
         id: read-repositories
         run: |
-          repositories=$(cat repositories.txt)
+          repositories: $(cat repositories.txt)
           echo "::set-output name=repositories::$repositories"
