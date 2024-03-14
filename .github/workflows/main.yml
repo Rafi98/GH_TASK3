@@ -1,1 +1,19 @@
-# this is main file
+name: Label Repositories
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  label-repositories:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Read Repository Names from File
+        id: read-repositories
+        run: |
+          repositories=$(cat repositories.txt)
+          echo "::set-output name=repositories::$repositories"
