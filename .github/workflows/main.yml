@@ -31,7 +31,9 @@ jobs:
       - name: Get Repository Names
         id: get-repos
         run: |
-          gh api --paginate '/Rafi98/GH_TASK3' --jq '.[].full_name' > repositories.txt
+          gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
+
+          #gh api --paginate '/Rafi98/GH_TASK3' --jq '.[].full_name' > repositories.txt
           # Replace '/Rafi98/GH_TASK3' with the appropriate endpoint for organization repositories if needed
 
       - name: Display Repository Names
