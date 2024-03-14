@@ -39,3 +39,19 @@ jobs:
       - name: Display Repository Names
         run: |
           cat repositories.txt
+
+ get-repo-topics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Get Repository Topics
+        id: get-topics
+        run: |
+          topics=$(gh api repos/:owner/:repo/topics --jq '.names[]' -H "Authorization: token ${{ secrets.PAT }}")
+          echo "::set-output name=topics::$topics"
+
+      - name: Display Repository Topics
+        run: |
+          echo "Repository Topics: ${{ steps.get-topics.outputs.topics }}"
