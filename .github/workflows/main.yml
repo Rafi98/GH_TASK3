@@ -4,9 +4,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  get-repositories:
-    runs-on: ubuntu-latest
-    steps:
+  login:
+   runs-on: ubuntu-latest
+   steps:
+      - name: Log in to GitHub
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh auth login --with-token <<<"${GH_TOKEN}"
+    
       - name: Checkout Repository
         uses: actions/checkout@v4
 
