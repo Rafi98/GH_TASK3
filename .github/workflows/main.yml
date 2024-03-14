@@ -43,7 +43,7 @@ jobs:
       - name: Get Repository Topics
         id: get-topics
         run: |
-          topics=$(gh api repos/:Rafi98/:GH_TASK3/topics --jq '.names[]' -H "Authorization: token ${{ secrets.PAT_Token }}")
+          topics=$(gh api repos/:Rafi98/:GH_TASK3/topics --jq '.names[]')
           echo "::set-output name=topics::$topics"
 
       - name: Display Repository Topics
