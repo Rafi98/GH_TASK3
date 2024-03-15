@@ -127,5 +127,5 @@ jobs:
           script: |
             const fs = require('fs');
             const newTopicContent = '## New Topic\n\nThis is the content of the new topic.';
-            fs.appendFileSync('README.md', CLOUD);
+            fs.appendFileSync('README.md', newTopicContent);
                      
