@@ -30,6 +30,8 @@ GitHub Actions is used extensively in this repository for automation, CI/CD work
 
 Automation is a core theme of this repository, with scripts, tools, and workflows for automating repetitive tasks, deployments, and maintenance tasks. It covers automation using shell scripts, Python, and GitHub Actions.
 
+## NEW Tools for AI
+
 ## How to Contribute
 Contributions to the project are welcome!
 
