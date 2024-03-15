@@ -92,7 +92,7 @@ jobs:
       - name: Add New Topics to README.md
         run: |
           # Replace <new_topics> with the actual new topics
-          echo -e "\n\n## Newly Added Topics\n AI tools " >> README.md
+          echo -e "\n\n## Newly Added Topics\n CLOUD - AWS " >> README.md
 
       - name: Commit and Push Changes
         #uses: actions/checkout@v4
