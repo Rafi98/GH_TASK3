@@ -113,5 +113,5 @@ jobs:
       - name: Push Changes
         uses: ad-m/github-push-action@v0.6.0
         with:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-          branch: main  # Adjust branch name as needed
+          github_token: ${{ secrets.GH_PAT }}
+          branch: main  
