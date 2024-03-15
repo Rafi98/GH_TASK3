@@ -76,3 +76,14 @@ jobs:
           topics=$(grep -oE '^#+\s+\S+' README.md | sed 's/^#* //')
           echo "Topics found in README.md:"
           echo "$topics"
+
+
+      - name: Compare Topics
+        id: compare-topics
+        run: |
+          topics_txt=$(echo "${{ steps.read-topics.outputs.stdout }}")
+          readme_topics=$(echo "${{ steps.extract-readme-topics.outputs.stdout }}")
+
+          newly_added_topics=$(comm -13 <(echo "$readme_topics" | sort) <(echo "$topics_txt" | sort))
+          echo "Newly added topics from topics.txt: $newly_added_topics"
+
