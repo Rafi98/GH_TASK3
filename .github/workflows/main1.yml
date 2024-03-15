@@ -73,7 +73,7 @@ jobs:
   
       - name: Read topics.txt and README.md
         run: |
-          topics=$(<topics.txt)
+          topics=$(<.github/workflows/topics.txt)
           readme_content=$(<README.md)
 
           # Check if topics are present in README.md
