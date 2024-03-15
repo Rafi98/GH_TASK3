@@ -96,7 +96,7 @@ jobs:
               git config --local user.name "GitHub Action"
               git add README.md
               git commit -m "Update README.md with missing topics"
-              git push
+              git push origin main
           else
               echo "All topics from topics.txt are already present in README.md."
           fi
