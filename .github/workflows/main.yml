@@ -43,5 +43,7 @@ jobs:
       - name: Get Repository Topics
         id: get-topics
         run: |
-          topics=$(gh api repos/${{ github.event.inputs.Rafi98 }}/${{ github.event.inputs.GH_TASK3 }}/topics --jq '.names[]')
+          topics=$(gh api repos/username/repository-name/topics --jq '.names[]')
+          echo "topic = $topics"
+
           echo "Repository Topics: $topics"
