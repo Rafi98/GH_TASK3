@@ -95,14 +95,16 @@ jobs:
           echo -e "\n\n## Newly Added Topics\n AI tools " >> README.md
 
       - name: Commit and Push Changes
-        uses: actions/checkout@v4
-          git config --local user.email "s.mdrafi98@gmail.com"
-          git config --local user.name "Rafi98"
-          git add README.md
-          git commit -m "Add newly added topics to README.md"
+        #uses: actions/checkout@v4
+        run: |
+         git config --local user.email "s.mdrafi98@gmail.com"
+         git config --local user.name "Rafi98"
+         git add README.md
+         git commit -m "Add newly added topics to README.md"
           
       - name: Push Changes
-        uses: ad-m/github-push-action@v0.6.0
+        #uses: ad-m/github-push-action@v0.6.0
+        uses: actions/checkout@v4
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           branch: main 
