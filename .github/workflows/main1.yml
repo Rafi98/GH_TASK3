@@ -70,6 +70,14 @@ jobs:
           while IFS= read -r repo; do
             echo "$repo"
           done < repositories.txt
+
+      - name: Extract Topics from README.md
+        id: extract-readme-topics
+        run: |
+          echo "${{ steps.read-readme.outputs.stdout }}" | grep -oE '^#+\s+\S+' | sed 's/^#* //'
+
+
+
           
       - name: Update Topics File
         if: steps.check-topics.outputs.add_topic
