@@ -53,7 +53,11 @@ jobs:
 
       - name: Read Predefined Topics
         id: read-topics
-        run: cd .github/workflows/
+             gh repo clone Rafi98/GH_TASK3 GH_TASK3
+             cd GH_TASK3/main/.github/workflows/
+
+        run: |
+             #cd .github/workflows/
              topics=$(<topics.txt)
 
       - name: Compare and Update Topics
