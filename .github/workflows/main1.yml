@@ -109,4 +109,9 @@ jobs:
           git config --local user.name "Rafi98"
           git add README.md
           git commit -m "Add newly added topics to README.md"
-          git push
+          
+      - name: Push Changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          branch: main  # Adjust branch name as needed
