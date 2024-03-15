@@ -92,11 +92,16 @@ jobs:
               echo -e "\n\n## Missing Topics\n$missing_topics" >> README.md
 
               # Commit and push changes
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          repository: Rafi98/GH_TASK3
+          ref: main
               git config --local user.email "action@github.com"
               git config --local user.name "GitHub Action"
               git add README.md
               git commit -m "Update README.md with missing topics"
               git push origin main
-          else
+           else
               echo "All topics from topics.txt are already present in README.md."
-          fi
+           fi
