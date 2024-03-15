@@ -62,7 +62,7 @@ jobs:
       - name: Fetch Repository List
         id: fetch-repos
         run: |
-          gh api Rafi98/GH_TASK3 --jq '.[].full_name' > repositories.txt
+          gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
 
       - name: Read Repository List
         id: read-repos
