@@ -70,6 +70,24 @@ jobs:
           while IFS= read -r repo; do
             echo "$repo"
           done < repositories.txt
+
+      - name: Update Topics File
+        if: steps.check-topics.outputs.add_topic
+        run: |
+          echo "${{ steps.check-topics.outputs.add_topic }}" >> topics.txt
+          
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update topics.txt file"
+          commit_options: "-a"
+          commit_user_name: "GitHub Actions"
+          commit_user_email: "actions@github.com"
+          branch: ${{ github.ref }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+
+
+
      
        
 
