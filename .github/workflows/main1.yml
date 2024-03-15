@@ -83,12 +83,7 @@ jobs:
           # Display newly added topics
           echo "Newly added topics:"
           echo "$newly_added_topics"
-      - name: Log in to GitHub
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          gh auth login --with-token <<<"${GH_TOKEN}"
-    
+          
       - name: Checkout Repository
         uses: actions/checkout@v4
           if [ -n "$newly_added_topics" ]; then
@@ -102,7 +97,7 @@ jobs:
 
           
           # Check if topics are present in README.md
-          missing_topics=""
+        missing_topics=""
           while IFS= read -r topic; do
               if ! grep -q "$topic" <<< "$readme_content"; then
                   missing_topics+="$topic\n"
