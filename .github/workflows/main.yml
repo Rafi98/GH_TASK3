@@ -49,5 +49,26 @@ jobs:
       - name: Print Topics File Content
         run: |
           cat .github/workflows/topics.txt
-      
-     
+
+
+      - name: Read Predefined Topics
+        id: read-topics
+        run: |
+          topics=$(<topics.txt)
+
+      - name: Compare and Update Topics
+        run: |
+          predefined_topics="${{ steps.read-topics.outputs.topics }}"
+          while IFS= read -r repo; do
+            # Fetch current topics for the repository
+            current_topics=$(gh api repos/$repo/topics --jq '.names[]')
+
+          # Compare current topics with predefined topics
+            for topic in $predefined_topics; do
+              if ! echo "$current_topics" | grep -q "$topic"; then
+                # Add topic to repository if not present
+                gh api repos/$repo/topics --input - <<< "{\"names\":[\"$topic\"]}"
+                echo "Topic '$topic' added to repository '$repo'."
+              fi
+            done
+          done < repositories.txt
