@@ -72,8 +72,7 @@ jobs:
           done < repositories.txt
 
       - name: Extract Topics from README.md
-        id: extract-topics
         run: |
-          # Use gh command to extract topics from README.md
-          topics=$(gh repo view --json topics .topics --template '{{.topics}}')
-          echo "topics=$topics" >> $GITHUB_ENV
+          topics=$(grep -oE '^#+\s+\S+' README.md | sed 's/^#* //')
+          echo "Topics found in README.md:"
+          echo "$topics"
