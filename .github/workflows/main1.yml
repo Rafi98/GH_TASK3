@@ -105,6 +105,7 @@ jobs:
       - name: Push Changes
         #uses: ad-m/github-push-action@v0.6.0
         uses: actions/checkout@v4
+              ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           branch: main 
