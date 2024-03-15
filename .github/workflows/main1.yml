@@ -94,29 +94,3 @@ jobs:
             git commit -m "Add newly added topics to README.md"
             git push
           fi 
-
-          
-          # Check if topics are present in README.md
-        missing_topics=""
-          while IFS= read -r topic; do
-              if ! grep -q "$topic" <<< "$readme_content"; then
-                  missing_topics+="$topic\n"
-              fi
-          done <<< "$topics"
-
-          if [ -n "$missing_topics" ]; then
-              echo "The following topics are missing from README.md:"
-              echo -e "$missing_topics"
-
-              # Update README.md with missing topics
-              echo -e "\n\n## Missing Topics\n$missing_topics" > README.md
-
-              # Commit and push changes
-              git config --local user.email "action@github.com"
-              git config --local user.name "GitHub Action"
-              git add README.md
-              git commit -m "Update README.md with missing topics"
-              git push origin main
-           else
-              echo "All topics from topics.txt are already present in README.md."
-           fi
