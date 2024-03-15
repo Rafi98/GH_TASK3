@@ -91,12 +91,13 @@ jobs:
               # Update README.md with missing topics
               echo -e "\n\n## Missing Topics\n$missing_topics" >> README.md
 
+      - name: Log in to GitHub
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh auth login --with-token <<<"${GH_TOKEN}"
+
               # Commit and push changes
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          repository: Rafi98/GH_TASK3
-          ref: main
               git config --local user.email "action@github.com"
               git config --local user.name "GitHub Action"
               git add README.md
