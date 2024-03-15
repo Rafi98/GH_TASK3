@@ -70,25 +70,33 @@ jobs:
           while IFS= read -r repo; do
             echo "$repo"
           done < repositories.txt
-
-      - name: Update Topics File
-        if: steps.check-topics.outputs.add_topic
+  
+      - name: Read topics.txt and README.md
         run: |
-          echo "${{ steps.check-topics.outputs.add_topic }}" >> topics.txt
-          
-      - name: Compare and Update Topics
-        run: |
-          predefined_topics="${{ steps.read-topics.outputs.topics }}"
-          while IFS= read -r repo; do
-            # Fetch current topics for the repository
-            current_topics=$(gh api repos/$repo/topics --jq '.names[]')
+          topics=$(<topics.txt)
+          readme_content=$(<README.md)
 
-          # Compare current topics with predefined topics
-            for topic in $predefined_topics; do
-              if ! echo "$current_topics" | grep -q "$topic"; then
-                # Add topic to repository if not present
-                gh api repos/$repo/topics --input - <<< "{\"names\":[\"$topic\"]}"
-                echo "Topic '$topic' added to repository '$repo'."
+          # Check if topics are present in README.md
+          missing_topics=""
+          while IFS= read -r topic; do
+              if ! grep -q "$topic" <<< "$readme_content"; then
+                  missing_topics+="$topic\n"
               fi
-            done
-          done < repositories.txt
+          done <<< "$topics"
+
+          if [ -n "$missing_topics" ]; then
+              echo "The following topics are missing from README.md:"
+              echo -e "$missing_topics"
+
+              # Update README.md with missing topics
+              echo -e "\n\n## Missing Topics\n$missing_topics" >> README.md
+
+              # Commit and push changes
+              git config --local user.email "action@github.com"
+              git config --local user.name "GitHub Action"
+              git add README.md
+              git commit -m "Update README.md with missing topics"
+              git push
+          else
+              echo "All topics from topics.txt are already present in README.md."
+          fi
