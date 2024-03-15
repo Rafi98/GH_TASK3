@@ -70,10 +70,11 @@ jobs:
           while IFS= read -r repo; do
             echo "$repo"
           done < repositories.txt
+          
       - name: Update Topics File
         if: steps.check-topics.outputs.add_topic
         run: |
-          echo "${{ steps.check-topics.outputs.add_topic }}" >> topics.txt
+          echo "${{ steps.check-topics.outputs.add_topic }}" > topics.txt
           
       - name: Compare and Update Topics
         run: |
