@@ -46,11 +46,8 @@ jobs:
           topics=$(gh api repos/Rafi98/GH_TASK3/topics --jq '.names[]')
           echo "Repository Topics: $topics"
 
-      - name: Clone repository using gh CLI
+      - name: Print Topics File Content
         run: |
-          gh repo clone Rafi98/GH_TASK3 GH_TASK3
-          cd GH_TASK3
-          cat topics.txt
-
+          cat .github/workflows/topics.txt
       
      
