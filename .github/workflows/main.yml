@@ -50,15 +50,19 @@ jobs:
         run: |
           cat .github/workflows/topics.txt
 
-
-      - name: Read Predefined Topics
-        id: read-topics
+      - name: Fetch Repository List
+        id: fetch-repos
         run: |
-             ls -a
-             #cd .github/workflows/
-             gh repo clone Rafi98/GH_TASK3 GH_TASK3
-             cd GH_TASK3/main/.github/workflows/
-             topics=$(<topics.txt)
+          gh api Rafi98/GH_TASK3 --jq '.[].full_name' > repositories.txt
+
+      - name: Read Repository List
+        id: read-repos
+        run: |
+          while IFS= read -r repo; do
+            echo "$repo"
+          done < repositories.txt
+     
+       
 
       - name: Compare and Update Topics
         run: |
