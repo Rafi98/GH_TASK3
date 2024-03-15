@@ -89,7 +89,7 @@ jobs:
               echo -e "$missing_topics"
 
               # Update README.md with missing topics
-              echo -e "\n\n## Missing Topics\n$missing_topics" >> README.md
+              echo -e "\n\n## Missing Topics\n$missing_topics" > README.md
 
       - name: Log in to GitHub
         env:
