@@ -70,27 +70,23 @@ jobs:
           while IFS= read -r repo; do
             echo "$repo"
           done < repositories.txt
-  
-      - name: Read topics.txt and README.md
+      - name: Update Topics File
+        if: steps.check-topics.outputs.add_topic
         run: |
-          topics=$(<.github/workflows/topics.txt)
-          #readme_content=$(<README.md)
-           readme_topics=$(grep -oE '^#+\s+\S+' README.md | sed 's/#* //')
-
-           #Compare topics and find newly added ones
-           newly_added_topics=$(comm -23 <(echo "$topics.txt" | sort) <(echo "$readme_topics" | sort))
-
-          # Display newly added topics
-          echo "Newly added topics:"
-          echo "$newly_added_topics"
+          echo "${{ steps.check-topics.outputs.add_topic }}" >> topics.txt
           
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-          if [ -n "$newly_added_topics" ]; then
-            echo -e "\n\n## Newly Added Topics\n$newly_added_topics" >> README.md
-            git config --global user.email "s.mdrafi98@gmail.com"
-            git config --global user.name "s.mdrafi98"
-            git add README.md
-            git commit -m "Add newly added topics to README.md"
-            git push
-          fi 
+      - name: Compare and Update Topics
+        run: |
+          predefined_topics="${{ steps.read-topics.outputs.topics }}"
+          while IFS= read -r repo; do
+            # Fetch current topics for the repository
+            current_topics=$(gh api repos/$repo/topics --jq '.names[]')
+          # Compare current topics with predefined topics
+            for topic in $predefined_topics; do
+              if ! echo "$current_topics" | grep -q "$topic"; then
+                # Add topic to repository if not present
+                gh api repos/$repo/topics --input - <<< "{\"names\":[\"$topic\"]}"
+                echo "Topic '$topic' added to repository '$repo'."
+              fi
+            done
+          done < repositories.txt
