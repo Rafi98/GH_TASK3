@@ -98,4 +98,15 @@ jobs:
           git commit -m "Add newly added topics to README.md"
           git push
           
+      - name: Add New Topics to README.md
+        run: |
+          # Replace <new_topics> with the actual new topics
+          echo -e "\n\n## Newly Added Topics\n AI tools > README.md
 
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Add newly added topics to README.md"
+          git push
