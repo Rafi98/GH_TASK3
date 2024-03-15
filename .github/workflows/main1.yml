@@ -74,8 +74,6 @@ jobs:
       - name: Extract Topics from README.md
         id: extract-topics
         run: |
-          topics=$(gh api repos/Rafi98/GH_TASK3/contents/README.md | jq -r '.content' | base64 -d | grep -oE '^#+\s+\S+' | sed 's/^#* //')
-          echo "::set-output name=topics::$topics"
-
-      - name: Display Extracted Topics
-        run: echo "Extracted Topics: ${{ steps.extract-topics.outputs.topics }}"
+          # Use gh command to extract topics from README.md
+          topics=$(gh repo view --json topics .topics --template '{{.topics}}')
+          echo "topics=$topics" >> $GITHUB_ENV
