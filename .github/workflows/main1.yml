@@ -87,17 +87,7 @@ jobs:
           newly_added_topics=$(comm -13 <(echo "$readme_topics" | sort) <(echo "$topics_txt" | sort))
           echo "Newly added topics from topics.txt: $newly_added_topics"
           
-      - name: Update README.md
-        if: steps.compare-topics.outputs.newly_added_topics != ''
-        run: |
-          sed -i "/^## Newly Added Topics\$/d" README.md  # Remove existing section if present
-          echo -e "\n\n## Newly Added Topics\n$newly_added_topics" >> README.md
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "Add newly added topics to README.md"
-          git push
-          
+           
       - name: Add New Topics to README.md
         run: |
           # Replace <new_topics> with the actual new topics
