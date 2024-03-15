@@ -74,8 +74,24 @@ jobs:
       - name: Read topics.txt and README.md
         run: |
           topics=$(<.github/workflows/topics.txt)
-          readme_content=$(<README.md)
+          #readme_content=$(<README.md)
+           readme_topics=$(grep -oE '^#+\s+\S+' README.md | sed 's/#* //')
 
+           #Compare topics and find newly added ones
+           newly_added_topics=$(comm -23 <(echo "$topics.txt" | sort) <(echo "$readme_topics" | sort))
+
+          # Display newly added topics
+          echo "Newly added topics:"
+          echo "$newly_added_topics"
+
+          if [ -n "$newly_added_topics" ]; then
+            echo -e "\n\n## Newly Added Topics\n$newly_added_topics" >> README.md
+            git add README.md
+            git commit -m "Add newly added topics to README.md"
+            git push
+          fi 
+
+          
           # Check if topics are present in README.md
           missing_topics=""
           while IFS= read -r topic; do
@@ -90,12 +106,6 @@ jobs:
 
               # Update README.md with missing topics
               echo -e "\n\n## Missing Topics\n$missing_topics" > README.md
-
-      - name: Log in to GitHub
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          gh auth login --with-token <<<"${GH_TOKEN}"
 
               # Commit and push changes
               git config --local user.email "action@github.com"
