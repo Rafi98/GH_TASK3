@@ -43,7 +43,7 @@ jobs:
       - name: Get Repository Topics
         id: get-topics
         run: |
-          topics=$(gh api repos/username/repository-name/topics --jq '.names[]')
-          echo "topic = $topics"
+          topics=$(gh api repos/Rafi98/GH_TASK3/topics --jq '.names[]')
+          echo "Repository Topics: $topics"
 
           echo "Repository Topics: $topics"
