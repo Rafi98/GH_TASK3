@@ -114,4 +114,6 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          branch: main  
+          branch: main 
+          repository: https://github.com/Rafi98/GH_TASK3.git
+                     
