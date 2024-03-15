@@ -46,4 +46,14 @@ jobs:
           topics=$(gh api repos/Rafi98/GH_TASK3/topics --jq '.names[]')
           echo "Repository Topics: $topics"
 
-          echo "Repository Topics: $topics"
+
+      - name: Read Topics File
+        id: read-topics
+        run: |
+          topics=$(cat topics.txt)
+          echo "TOPICS=$topics" 
+
+      - name: Display Topics
+        run: |
+          echo "Topics from topics.txt: ${{ steps.read-topics.outputs.topics }}"
+     
