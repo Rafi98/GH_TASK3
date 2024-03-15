@@ -53,8 +53,8 @@ jobs:
 
       - name: Read Predefined Topics
         id: read-topics
-        run: |
-          topics=$(<topics.txt)
+        run: cd .github/workflows
+             topics=$(<topics.txt)
 
       - name: Compare and Update Topics
         run: |
