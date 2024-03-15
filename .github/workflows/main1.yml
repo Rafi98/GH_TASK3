@@ -113,7 +113,7 @@ jobs:
 
 
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -127,5 +127,5 @@ jobs:
           script: |
             const fs = require('fs');
             const newTopicContent = '## New Topic\n\nThis is the content of the new topic.';
-            fs.appendFileSync('README.md', newTopicContent);
+            fs.appendFileSync('README.md', CLOUD);
                      
