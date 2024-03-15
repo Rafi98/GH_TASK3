@@ -72,30 +72,10 @@ jobs:
           done < repositories.txt
 
       - name: Extract Topics from README.md
-        id: extract-readme-topics
+        id: extract-topics
         run: |
-          echo "${{ steps.read-readme.outputs.stdout }}" | grep -oE '^#+\s+\S+' | sed 's/^#* //'
+          topics=$(gh api repos/Rafi98/GH_TASK3/contents/README.md | jq -r '.content' | base64 -d | grep -oE '^#+\s+\S+' | sed 's/^#* //')
+          echo "::set-output name=topics::$topics"
 
-
-
-          
-      - name: Update Topics File
-        if: steps.check-topics.outputs.add_topic
-        run: |
-          echo "${{ steps.check-topics.outputs.add_topic }}" > topics.txt
-          
-      - name: Compare and Update Topics
-        run: |
-          predefined_topics="${{ steps.read-topics.outputs.topics }}"
-          while IFS= read -r repo; do
-            # Fetch current topics for the repository
-            current_topics=$(gh api repos/$repo/topics --jq '.names[]')
-          # Compare current topics with predefined topics
-            for topic in $predefined_topics; do
-              if ! echo "$current_topics" | grep -q "$topic"; then
-                # Add topic to repository if not present
-                gh api repos/$repo/topics --input - <<< "{\"names\":[\"$topic\"]}"
-                echo "Topic '$topic' added to repository '$repo'."
-              fi
-            done
-          done < repositories.txt
+      - name: Display Extracted Topics
+        run: echo "Extracted Topics: ${{ steps.extract-topics.outputs.topics }}"
