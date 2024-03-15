@@ -105,12 +105,27 @@ jobs:
       - name: Push Changes
         #uses: ad-m/github-push-action@v0.6.0
         uses: actions/checkout@v4
-
-      #- name: Push with git push action
-       # uses: ad-m/github-push-action@v0.6.0
-              
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           branch: main 
           #repository: https://github.com/Rafi98/GH_TASK3.git
+
+
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Add New Topic
+        uses: actions/github-script@v5
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const newTopicContent = '## New Topic\n\nThis is the content of the new topic.';
+            fs.appendFileSync('README.md', newTopicContent);
                      
