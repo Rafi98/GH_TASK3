@@ -29,19 +29,19 @@ jobs:
         uses: actions/checkout@v4
        
           
-      - name: Get Repository Names
-        id: get-repos
-        run: |
-         gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
+     ## - name: Get Repository Names
+       ## id: get-repos
+        ##run: |
+         ##gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
 
           #gh api --paginate '/Rafi98/GH_TASK3' --jq '.[].full_name' > repositories.txt
           # Replace '/Rafi98/GH_TASK3' with the appropriate endpoint for organization repositories if needed
 
-      - name: Display Repository Names
-        run: |
-          cat repositories.txt
+      ##- name: Display Repository Names
+        ##run: |
+          ##cat repositories.txt
 
-      - name: Get Repository Topics
+      - name: Get Repository Topics from README.md
         id: get-topics
         run: |
           topics=$(gh api repos/Rafi98/GH_TASK3/topics --jq '.names[]')
@@ -65,14 +65,14 @@ jobs:
         ##run: |
           ##gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
 
-      - name: Read Repository List
-        id: read-repos
-        run: |
-          while IFS= read -r repo; do
-            echo "$repo"
-          done < repositories.txt
+      ##- name: Read Repository List
+        ##id: read-repos
+        ##run: |
+          ##while IFS= read -r repo; do
+            ##echo "$repo"
+          ##done < repositories.txt
 
-      - name: Extract Topics from README.md
+      - name: Extract Topics content from README.md
         run: |
           topics=$(grep -oE '^#+\s+\S+' README.md | sed 's/^#* //')
           echo "Topics found in README.md:"
@@ -89,25 +89,25 @@ jobs:
           ##echo "Newly added topics from topics.txt: $newly_added_topics"
           
            
-      - name: Add New Topics to README.md
-        run: |
-          # Replace <new_topics> with the actual new topics
-          echo -e "\n\n## Newly Added Topics\n CLOUD - AWS " >> README.md
+      ##- name: Add New Topics to README.md
+        ##run: |
+          ## Replace <new_topics> with the actual new topics
+          ##echo -e "\n\n## Newly Added Topics\n CLOUD - AWS " >> README.md
 
-      - name: Commit and Push Changes
+      ##- name: Commit and Push Changes
         #uses: actions/checkout@v4
-        run: |
-         git config --local user.email "s.mdrafi98@gmail.com"
-         git config --local user.name "Rafi98"
-         git add README.md
-         git commit -m "Add newly added topics to README.md"
+        ##run: |
+         ##git config --local user.email "s.mdrafi98@gmail.com"
+         ##git config --local user.name "Rafi98"
+         ##git add README.md
+         ##git commit -m "Add newly added topics to README.md"
           
-      - name: Push Changes
+      ##- name: Push Changes
         #uses: ad-m/github-push-action@v0.6.0
-        uses: actions/checkout@v4
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          branch: main 
+        ##uses: actions/checkout@v4
+        ##with:
+          ##github_token: ${{ secrets.GH_TOKEN }}
+          ##branch: main 
           #repository: https://github.com/Rafi98/GH_TASK3.git
 
 
