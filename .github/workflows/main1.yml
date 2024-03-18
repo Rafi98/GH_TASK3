@@ -101,7 +101,7 @@ jobs:
  
       - name: Execute Shell Script
         run: |
-          ./update_topics.sh "ARGOCD" "topics.txt"  #Add the text to the topics.txt file
+          ./update_topics.sh "MAVEN" "topics.txt"  #Add the text to the topics.txt file
           git config --global user.name "Rafi98"
           git config --global user.email "s.mdrafi98@gmail.com"
           #git add .github/workflows/topics.txt
@@ -122,9 +122,9 @@ jobs:
       - name: Read topics.txt
         id: read-topics
         run: |
-         # echo "::set-output name=topics::$(cat topics.txt)"
+         echo "::set-output name=topics::$(cat topics.txt)"
           #echo "$(cat topics.txt)" > topics_output.txt
-          echo "TOPICS_FILE=topics.txt" >> $GITHUB_ENV
+          #echo "TOPICS_FILE=topics.txt" >> $GITHUB_ENV
 
       - name: Update README.md
         run: |
