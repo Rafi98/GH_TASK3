@@ -92,7 +92,7 @@ jobs:
 
       - name: Print GITHUB_WORKSPACE
         run: |
-          echo "GitHub workspace directory: ${{ GITHUB_WORKSPACE }}"
+          echo "GitHub workspace directory: ${{ secrets.GH_PAT }}"
 
       - name: Execute Shell Script
         run: |
