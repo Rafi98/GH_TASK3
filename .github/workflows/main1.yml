@@ -129,17 +129,17 @@ jobs:
           #echo "TOPICS_CONTENT=$topics_content" >> $GITHUB_ENV
 
            topics_content=$(<topics.txt)
-           echo "## Topics" > README.md
+           echo "## Topics" >> README.md
           while IFS= read -r line; do
             echo "$line" >> README.md
           done <<< "$topics_content"
  
 
-      - name: Update README.md
-        run: |
-          echo "## Topics" >> README.md
-          echo "${{ steps.read-topics.outputs.topics_content }}" >> README.md
-          echo "${topics_content}" >> README.md
+    #  - name: Update README.md
+     #   run: |
+      #    echo "## Topics" >> README.md
+       #   echo "${{ steps.read-topics.outputs.topics_content }}" >> README.md
+        #  echo "${topics_content}" >> README.md
 
 
 
