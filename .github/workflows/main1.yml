@@ -89,6 +89,11 @@ jobs:
       - name: Set Execute Permission
         run: chmod +x update_topics.sh
 
+
+      - name: Print GITHUB_WORKSPACE
+        run: |
+          echo "GitHub workspace directory: ${{ GITHUB_WORKSPACE }}"
+
       - name: Execute Shell Script
         run: |
           ./update_topics.sh "Learning" ".github/workflows/topics.txt"
