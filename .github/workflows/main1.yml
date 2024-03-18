@@ -101,7 +101,7 @@ jobs:
  
       - name: Execute Shell Script
         run: |
-          ./update_topics.sh "AZURE" "topics.txt"  #Add the text to the topics.txt file
+          ./update_topics.sh "Data Eng" "topics.txt"  #Add the text to the topics.txt file
           git config --global user.name "Rafi98"
           git config --global user.email "s.mdrafi98@gmail.com"
           #git add .github/workflows/topics.txt
@@ -128,12 +128,22 @@ jobs:
           #echo "TOPICS_FILE=topics.txt" >> $GITHUB_ENV
           #echo "TOPICS_CONTENT=$topics_content" >> $GITHUB_ENV
 
+           topics_content=$(<topics.txt)
+           echo "## Topics" > README.md
+          while IFS= read -r line; do
+            echo "$line" >> README.md
+          done <<< "$topics_content"
+ 
+
       - name: Update README.md
         run: |
           echo "## Topics" >> README.md
           echo "${{ steps.read-topics.outputs.topics_content }}" >> README.md
           echo "${topics_content}" >> README.md
- 
+
+
+
+         
       - name: Commit and Push Changes
         run: |
           git config --global user.name "Rafi98"
