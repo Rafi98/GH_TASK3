@@ -91,6 +91,11 @@ jobs:
 
       - name: Execute Shell Script
         run: ./update_topics.sh "Learning" ".github/workflows/topics.txt"
+             git config --global user.name "Rafi"
+            git config --global user.email "s.mdrafi98@gmail.com"
+            git add topics.txt
+            git commit -m "Update topics.txt"
+            git push
 
 
      ## - name: Compare Topics
