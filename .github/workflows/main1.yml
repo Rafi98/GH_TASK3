@@ -94,7 +94,7 @@ jobs:
  
       - name: Execute Shell Script
         run: |
-          ./update_topics.sh "Ansible" ".github/workflows/topics.txt"
+          ./update_topics.sh "Ansible" "topics.txt"
           git config --global user.name "Rafi"
           git config --global user.email "s.mdrafi98@gmail.com"
           #git add .github/workflows/topics.txt
