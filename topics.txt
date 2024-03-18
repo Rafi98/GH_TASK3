@@ -1,2 +1,1 @@
 Programming,Data Science,MachineLearning,GitHubActions,Automation
-,GIT,DOCKER,ANSIBLE,JFROG,NEXUS,sonar,CI/CD
