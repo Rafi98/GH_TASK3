@@ -101,7 +101,7 @@ jobs:
  
       - name: Execute Shell Script
         run: |
-          ./update_topics.sh "NEXUS" "topics.txt"  #Add the text to the topics.txt file
+          ./update_topics.sh " " "topics.txt"  #Add the text to the topics.txt file
           git config --global user.name "Rafi98"
           git config --global user.email "s.mdrafi98@gmail.com"
           #git add .github/workflows/topics.txt
@@ -116,7 +116,7 @@ jobs:
 
       - name: Update README.md
         run: |
-         echo "The following topics are covered:" >> README.md
+         #echo "The following topics are covered:" >> README.md
           echo "${{ steps.read-topics.outputs.topics }}" >> README.md
 
       - name: Commit and Push Changes
