@@ -49,7 +49,7 @@ jobs:
 
       - name: Print Topics from topics.txt
         run: |
-          cat .github/workflows/topics.txt
+          cat topics.txt
      
       - name: Install gh CLI
         run: |
