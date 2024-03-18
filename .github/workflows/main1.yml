@@ -92,18 +92,26 @@ jobs:
       - name: List Files
         run: ls
 
+      - name: Print Topics from topics.txt
+        run: |
+          cat topics.txt
+
       - name: Pull Changes
         run: git pull origin main
  
       - name: Execute Shell Script
         run: |
-          ./update_topics.sh "DOCKER" "topics.txt"  #Add the text to the topics.txt file
+          ./update_topics.sh "ANSIBLE" "topics.txt"  #Add the text to the topics.txt file
           git config --global user.name "Rafi98"
           git config --global user.email "s.mdrafi98@gmail.com"
           #git add .github/workflows/topics.txt
           git add .
           git commit -m "Update topics.txt"
           git push
+
+      - name: Print Topics from topics.txt
+        run: |
+          cat topics.txt
 
 
      ## - name: Compare Topics
