@@ -1,6 +1,6 @@
 ## Topics
 Programming,Data Science,MachineLearning,GitHubActions,Automation
-,AZURE,Data Eng
+,AZURE,Data Eng,informatica
 ## Topics
 
 
