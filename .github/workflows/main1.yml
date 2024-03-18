@@ -97,7 +97,7 @@ jobs:
           ./update_topics.sh "Ansible" ".github/workflows/topics.txt"
           git config --global user.name "Rafi"
           git config --global user.email "s.mdrafi98@gmail.com"
-          git add topics.txt
+          git add .github/workflows/topics.txt
           git commit -m "Update topics.txt"
           git push
 
