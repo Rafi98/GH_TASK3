@@ -90,7 +90,7 @@ jobs:
         run: chmod +x update_topics.sh
 
       - name: Execute Shell Script
-        run: ./update_topics.sh "aws" ".github/workflows/topics.txt"
+        run: ./update_topics.sh "Learning" ".github/workflows/topics.txt"
 
 
      ## - name: Compare Topics
