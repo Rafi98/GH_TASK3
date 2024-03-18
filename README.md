@@ -34,18 +34,3 @@ Automation is a core theme of this repository, with scripts, tools, and workflow
 
 ## How to Contribute
 Contributions to the project are welcome!
-
-
-The following topics are covered:
-
-
-
-# Topics
-Programming,Data Science,MachineLearning,GitHubActions,Automation
-# Topics
-
-# Topics
-Programming,Data Science,MachineLearning,GitHubActions,Automation
-
-## Topics
-
