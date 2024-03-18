@@ -84,7 +84,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Set Execute Permission
+        run: chmod +x update_topics.sh
 
       - name: Execute Shell Script
         run: ./update_topics.sh "aws" "topics.txt"
