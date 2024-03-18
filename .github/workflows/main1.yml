@@ -114,6 +114,12 @@ jobs:
           cat topics.txt
 
 
+      - name: Update README.md
+        run: |
+         echo "The following topics are covered:" >> README.md
+          echo "${{ steps.read-topics.outputs.topics }}" >> README.md
+
+
      ## - name: Compare Topics
        ## id: compare-topics
         ##run: |
