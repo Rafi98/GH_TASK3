@@ -79,6 +79,17 @@ jobs:
           echo "$topics"
 
 
+ run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Execute Shell Script
+        run: ./update_topics.sh "aws" "topics.txt"
+
+
      ## - name: Compare Topics
        ## id: compare-topics
         ##run: |
