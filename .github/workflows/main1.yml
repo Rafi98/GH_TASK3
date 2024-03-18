@@ -89,14 +89,10 @@ jobs:
       - name: Set Execute Permission
         run: chmod +x update_topics.sh
 
-
-      - name: Print GITHUB_WORKSPACE
-        run: |
-          echo "GitHub workspace directory: ${{ secrets.GH_PAT }}"
-
+ 
       - name: Execute Shell Script
         run: |
-          ./update_topics.sh "Learning" ".github/workflows/topics.txt"
+          ./update_topics.sh "Ansible" ".github/workflows/topics.txt"
           git config --global user.name "Rafi"
           git config --global user.email "s.mdrafi98@gmail.com"
           git add topics.txt
