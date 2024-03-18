@@ -113,6 +113,14 @@ jobs:
         run: |
           cat topics.txt
 
+ 
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Pull Changes
+        run: git pull origin main
+ 
+      -
 
       - name: Update README.md
         run: |
