@@ -101,7 +101,7 @@ jobs:
  
       - name: Execute Shell Script
         run: |
-          ./update_topics.sh "AWS" "topics.txt"  #Add the text to the topics.txt file
+          ./update_topics.sh "AZURE" "topics.txt"  #Add the text to the topics.txt file
           git config --global user.name "Rafi98"
           git config --global user.email "s.mdrafi98@gmail.com"
           #git add .github/workflows/topics.txt
