@@ -25,14 +25,14 @@ jobs:
         run: |
           gh auth login --with-token <<<"${GH_TOKEN}"
     
-      ##- name: Checkout Repository
-        ##uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
        
           
-      ##- name: Get Repository Names
-        ##id: get-repos
-        ##run: |
-          ##gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
+      - name: Get Repository Names
+        id: get-repos
+        run: |
+         gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
 
           #gh api --paginate '/Rafi98/GH_TASK3' --jq '.[].full_name' > repositories.txt
           # Replace '/Rafi98/GH_TASK3' with the appropriate endpoint for organization repositories if needed
