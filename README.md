@@ -36,3 +36,5 @@ Automation is a core theme of this repository, with scripts, tools, and workflow
 Contributions to the project are welcome!
 
 
+The following topics are covered:
+
