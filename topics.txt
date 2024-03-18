@@ -1,2 +1,2 @@
 Programming,Data Science,MachineLearning,GitHubActions,Automation
-,CI/CD,ARGOCD,MAVEN
+,CI/CD,ARGOCD,MAVEN,JFROG
