@@ -25,14 +25,14 @@ jobs:
         run: |
           gh auth login --with-token <<<"${GH_TOKEN}"
     
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      ##- name: Checkout Repository
+        ##uses: actions/checkout@v4
        
           
-      - name: Get Repository Names
-        id: get-repos
-        run: |
-          gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
+      ##- name: Get Repository Names
+        ##id: get-repos
+        ##run: |
+          ##gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
 
           #gh api --paginate '/Rafi98/GH_TASK3' --jq '.[].full_name' > repositories.txt
           # Replace '/Rafi98/GH_TASK3' with the appropriate endpoint for organization repositories if needed
@@ -47,7 +47,7 @@ jobs:
           topics=$(gh api repos/Rafi98/GH_TASK3/topics --jq '.names[]')
           echo "Repository Topics: $topics"
 
-      - name: Print Topics File Content
+      - name: Print Topics from topics.txt
         run: |
           cat .github/workflows/topics.txt
      
@@ -60,10 +60,10 @@ jobs:
           && sudo apt update \
           && sudo apt install gh -y
 
-      - name: Fetch Repository List
-        id: fetch-repos
-        run: |
-          gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
+      ##- name: Fetch Repository List
+        ##id: fetch-repos
+        ##run: |
+          ##gh api --paginate '/users/Rafi98/repos' --jq '.[].full_name' > repositories.txt
 
       - name: Read Repository List
         id: read-repos
@@ -79,14 +79,14 @@ jobs:
           echo "$topics"
 
 
-      - name: Compare Topics
-        id: compare-topics
-        run: |
-          topics_txt=$(echo "${{ steps.read-topics.outputs.stdout }}")
-          readme_topics=$(echo "${{ steps.extract-readme-topics.outputs.stdout }}")
+     ## - name: Compare Topics
+       ## id: compare-topics
+        ##run: |
+          ##topics_txt=$(echo "${{ steps.read-topics.outputs.stdout }}")
+          ##readme_topics=$(echo "${{ steps.extract-readme-topics.outputs.stdout }}")
           
-          newly_added_topics=$(comm -13 <(echo "$readme_topics" | sort) <(echo "$topics_txt" | sort))
-          echo "Newly added topics from topics.txt: $newly_added_topics"
+         ## newly_added_topics=$(comm -13 <(echo "$readme_topics" | sort) <(echo "$topics_txt" | sort))
+          ##echo "Newly added topics from topics.txt: $newly_added_topics"
           
            
       - name: Add New Topics to README.md
@@ -112,20 +112,4 @@ jobs:
 
 
 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-
-      - name: Add New Topic
-        uses: actions/github-script@v5
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          script: |
-            const fs = require('fs');
-            const newTopicContent = '## New Topic\n\n AWS cloud.';
-            fs.appendFileSync('README.md', newTopicContent);
-                     
+   
