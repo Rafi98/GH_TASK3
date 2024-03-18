@@ -113,17 +113,23 @@ jobs:
         run: |
           cat topics.txt
 
- 
       - name: Checkout Repository
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@v2
+
       - name: Pull Changes
         run: git pull origin main
- 
+
+      - name: Read topics.txt
+        id: read-topics
+        run: |
+          echo "::set-output name=topics::$(cat topics.txt)"
+
       - name: Update README.md
         run: |
-         #echo "The following topics are covered:" >> README.md
+          echo "# Topics" >> README.md
           echo "${{ steps.read-topics.outputs.topics }}" >> README.md
+
+ 
 
       - name: Commit and Push Changes
         run: |
