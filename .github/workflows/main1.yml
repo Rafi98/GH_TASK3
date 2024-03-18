@@ -91,6 +91,9 @@ jobs:
 
       - name: List Files
         run: ls
+
+      - name: Pull Changes
+        run: git pull origin main
  
       - name: Execute Shell Script
         run: |
