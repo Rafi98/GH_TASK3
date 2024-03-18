@@ -1,2 +1,2 @@
 Programming,Data Science,MachineLearning,GitHubActions,Automation
-,GIT,DOCKER,ANSIBLE
+,GIT,DOCKER,ANSIBLE,JFROG
