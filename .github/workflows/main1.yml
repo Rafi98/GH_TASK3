@@ -119,6 +119,14 @@ jobs:
          echo "The following topics are covered:" >> README.md
           echo "${{ steps.read-topics.outputs.topics }}" >> README.md
 
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Rafi98"
+          git config --global user.email "s.mdrafi98@gmail.com"
+          git add .
+          git commit -m "Update README.md with topics.txt content"
+          git push
+
 
      ## - name: Compare Topics
        ## id: compare-topics
