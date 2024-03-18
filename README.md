@@ -1,9 +1,3 @@
 ## Topics
 Programming,Data Science,MachineLearning,GitHubActions,Automation
-,AZURE,Data Eng,informatica
-## Topics
-
-
-## Topics
-Programming,Data Science,MachineLearning,GitHubActions,Automation
-,AZURE,Data Eng,informatica,Data science
+,AZURE,Data Eng,informatica,Data science,AI
