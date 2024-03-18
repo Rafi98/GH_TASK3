@@ -120,8 +120,6 @@ jobs:
       - name: Pull Changes
         run: git pull origin main
  
-      -
-
       - name: Update README.md
         run: |
          #echo "The following topics are covered:" >> README.md
