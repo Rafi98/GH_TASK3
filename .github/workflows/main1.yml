@@ -101,7 +101,7 @@ jobs:
  
       - name: Execute Shell Script
         run: |
-          ./update_topics.sh "JFROG" "topics.txt"  #Add the text to the topics.txt file
+          ./update_topics.sh "AWS" "topics.txt"  #Add the text to the topics.txt file
           git config --global user.name "Rafi98"
           git config --global user.email "s.mdrafi98@gmail.com"
           #git add .github/workflows/topics.txt
@@ -127,13 +127,14 @@ jobs:
           #echo "TOPICS_FILE=topics.txt" >> $GITHUB_ENV
 
           topics_content=$(cat topics.txt)
-          echo "TOPICS_CONTENT=$topics_content" >> $GITHUB_ENV
+          #echo "TOPICS_CONTENT=$topics_content" >> $GITHUB_ENV
 
       - name: Update README.md
         run: |
           ##echo "# Topics" >> README.md
           ##echo "${{ steps.read-topics.outputs.topics }}" >> README.md
-          echo "${{ env.TOPICS_CONTENT }}" >> README.md
+          ###echo "${{ env.TOPICS_CONTENT }}" >> README.md
+          echo "${topics_content}" >> README.md
  
       - name: Commit and Push Changes
         run: |
