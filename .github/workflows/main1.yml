@@ -122,7 +122,9 @@ jobs:
       - name: Read topics.txt
         id: read-topics
         run: |
-          echo "::set-output name=topics::$(cat topics.txt)"
+         # echo "::set-output name=topics::$(cat topics.txt)"
+          #echo "$(cat topics.txt)" > topics_output.txt
+          echo "TOPICS_FILE=topics.txt" >> $GITHUB_ENV
 
       - name: Update README.md
         run: |
@@ -130,7 +132,6 @@ jobs:
           echo "${{ steps.read-topics.outputs.topics }}" >> README.md
 
  
-
       - name: Commit and Push Changes
         run: |
           git config --global user.name "Rafi98"
